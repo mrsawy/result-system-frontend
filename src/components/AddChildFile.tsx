@@ -3,24 +3,15 @@ import {
     Dialog,
     DialogClose,
     DialogContent,
-    DialogDescription,
     DialogFooter,
-    DialogHeader,
-    DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import Icons from "./ui/Icons"
-import { useAuthStore } from "@/lib/store/authStore"
-import { addNewFolder } from "@/lib/utils"
-import { FileSchema, FolderSchema } from "@/lib/schema"
+import { FileSchema } from "@/lib/schema"
 import { toast } from "react-toastify"
-import { useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate, useParams } from "react-router"
 import { useState } from "react"
 import { FilePond, registerPlugin } from 'react-filepond'
-
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import 'filepond/dist/filepond.min.css'
@@ -34,10 +25,8 @@ import useGeneralStore from "@/lib/store/generalStore"
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 
-
 export function AddChildFile() {
     const { id } = useParams();
-    const queryClient = useQueryClient()
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -57,7 +46,7 @@ export function AddChildFile() {
 
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
-            mainImage.forEach((image, index) => {
+            mainImage.forEach((image) => {
                 formData.append(`file`, image);
             });
             formData.append(`parent_id`, id as string);

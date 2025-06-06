@@ -15,7 +15,7 @@ import Icons from "./ui/Icons"
 import { useAuthStore } from "@/lib/store/authStore"
 import { toast } from "react-toastify"
 import useGeneralStore from "@/lib/store/generalStore"
-import { NavLink, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 export function LoginButton() {
     const navigate = useNavigate();

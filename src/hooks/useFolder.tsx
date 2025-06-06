@@ -1,7 +1,6 @@
 import { Backend_URL } from "@/lib/constants";
 import { File } from "@/lib/types/file.interface";
 import { useQuery } from "@tanstack/react-query"
-import { QueryFunctionContext } from "@tanstack/react-query";
 
 export const fetchFolder = async ({ id }: { id: string }) => {
     const response = await fetch(`${Backend_URL}/api/folder/${id}`);

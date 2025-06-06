@@ -1,8 +1,6 @@
 import { AddParentResultFolder } from "@/components/AddParentResultFolder";
 import { Cta } from "@/components/Cta";
 import ParentFolderCard from "@/components/ParentFolderCard";
-import { Button } from "@/components/ui/button";
-import Icons from "@/components/ui/Icons";
 import { useParentsFolders } from "@/hooks/useParentFolders";
 import { useAuthStore } from "@/lib/store/authStore";
 

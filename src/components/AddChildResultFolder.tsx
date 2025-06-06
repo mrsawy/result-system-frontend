@@ -12,7 +12,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Icons from "./ui/Icons"
-import { useAuthStore } from "@/lib/store/authStore"
 import { addNewFolder } from "@/lib/utils"
 import { FolderSchema } from "@/lib/schema"
 import { toast } from "react-toastify"

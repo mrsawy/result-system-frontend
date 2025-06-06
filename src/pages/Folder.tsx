@@ -8,7 +8,7 @@ import useGeneralStore from '@/lib/store/generalStore';
 import { File } from '@/lib/types/file.interface';
 import axios, { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLoaderData, useLocation, useNavigate, useParams } from "react-router";
+import { NavLink, useLoaderData, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 

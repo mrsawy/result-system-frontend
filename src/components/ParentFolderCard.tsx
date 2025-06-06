@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, NavLink } from 'react-router';
+import { NavLink } from 'react-router';
 import Icons from './ui/Icons';
 import { useAuthStore } from '@/lib/store/authStore';
 import Swal from "sweetalert2";

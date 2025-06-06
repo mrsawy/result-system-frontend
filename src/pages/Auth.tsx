@@ -2,7 +2,7 @@ import { LoginButton } from '@/components/LoginButton';
 import { useAuthStore } from '@/lib/store/authStore';
 import React from 'react';
 import Swal from "sweetalert2";
-import { NavLink, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
 import { Button } from '@/components/ui/button';
 import Icons from '@/components/ui/Icons';
