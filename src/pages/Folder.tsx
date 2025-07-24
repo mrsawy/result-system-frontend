@@ -126,13 +126,13 @@ const Folder: React.FC = () => {
                 <div className='flex flex-col gap-3'>
                     {children.map((folder) => (
                         <div
-                            className='flex justify-between gap-3 py-4 px-2 border rounded bg-neutral-300 dark:bg-neutral-800 text-center text-xl transition-all hover:opacity-80 '
+                            className='flex justify-between gap-3 py-4 px-2 border rounded bg-neutral-300 dark:bg-neutral-800 text-center text-md md:text-xl transition-all hover:opacity-80 '
                         >
                             <NavLink to={folder.type == "folder" ? `/results/${folder.id}` : `#`} className='flex gap-4 cursor-pointer truncate ' onClick={() => handleClick({ id: folder.id, type: folder.type })}>
                                 {folder.type == "folder" && <Icons.folder />}
                                 {folder.type == "file" && <Icons.file />}
 
-                                <div className='hover:underline underline-offset-8 h-9'> {folder.name} </div>
+                                <div className='hover:underline underline-offset-8 h-9 max-w-[90%] truncate '> {folder.name} </div>
                             </NavLink>
 
                             {user && <Icons.delete onClick={() => deleteHandler(folder.id, folder.type)} />}
