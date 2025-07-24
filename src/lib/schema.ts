@@ -5,34 +5,38 @@ export const FolderSchema = object({
         .required('Folder name is required'),
     parentId: string()
         .optional()
-
 });
+
 export const FileSchema = object({
-    file: mixed()
+    file: mixed<FileList>()
         .test(
             "fileSize",
-            "file is too large",
-            (value: any) => (value && value[0] ? value[0].size <= 1024 * 1024 * 16 : true) // 16MB limit
+            "File is too large",
+            (value) =>
+                value && value[0]
+                    ? value[0].size <= 1024 * 1024 * 16 // 16MB
+                    : true
         )
-        .test("isImage", "File must be valid", function (value: any) {
-            if (value == "undefined" || value)
-                return (
-                    value &&
-                    (value.type === "image/jpg" ||
-                        value.type === "image/jpeg" ||
-                        value.type === "image/png" ||
-                        value.type === "image/webp") ||
-                    value.type === "application/pdf"
+        .test(
+            "isValidType",
+            "File must be an image (jpg/jpeg/png/webp) or a PDF",
+            (value) => {
+                if (!value || !value[0]) return true;
 
-                );
-            else {
-                return true;
+                const type = value[0].type;
+                return [
+                    "image/jpg",
+                    "image/jpeg",
+                    "image/png",
+                    "image/webp",
+                    "application/pdf"
+                ].includes(type);
             }
-        }),
+        )
+        .required("File is required"),
     parentId: string()
-        .required()
-
+        .required("Parent ID is required")
 });
 
-
 export type FolderSchemaType = InferType<typeof FolderSchema>;
+export type FileSchemaType = InferType<typeof FileSchema>;

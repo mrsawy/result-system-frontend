@@ -7,7 +7,8 @@ import Folder from "./pages/Folder";
 import { fetchFolder } from "./hooks/useFolder";
 import { File } from "./lib/types/file.interface";
 import Auth from "./pages/Auth";
-export default createBrowserRouter([
+
+const router = createBrowserRouter([
   {
     path: "/",
     Component: HomeOutlet,
@@ -23,7 +24,7 @@ export default createBrowserRouter([
 
             loader: async ({ params }) => {
               if (!params.id) throw new Error("Folder id is required");
-              let folder: File = await fetchFolder({ id: params.id });
+              const folder: File = await fetchFolder({ id: params.id });
               return folder;
             },
           },
@@ -32,3 +33,5 @@ export default createBrowserRouter([
     ],
   }
 ]);
+
+export default router;

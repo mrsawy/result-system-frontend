@@ -13,9 +13,6 @@ import Swal from "sweetalert2";
 
 
 const Folder: React.FC = () => {
-
-    const [open, setOpen] = useState(false)
-
     const folder = useLoaderData() as File;
     const { user } = useAuthStore()
     const navigate = useNavigate();

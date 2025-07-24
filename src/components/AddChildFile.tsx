@@ -31,13 +31,16 @@ export function AddChildFile() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [mainImage, setMainImage] = useState<any[]>([]);
 
     const refreshPage = () => {
         navigate(location.pathname, { replace: true });
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleUpdateMainImage = (fileItems: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setMainImage(fileItems.map((fileItem: any) => fileItem.file));
     }
 
