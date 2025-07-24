@@ -56,7 +56,7 @@ export function AddParentResultFolder() {
                     <div className="grid gap-4">
                         <div className="grid gap-3">
                             <Label htmlFor="name"> عنوان </Label>
-                            <Input id="name" name="name" placeholder="اضف العنوان هنا .." />
+                            <Input className="leading-10" id="name" name="name" placeholder="اضف العنوان هنا .." />
                         </div>
                     </div>
                     <DialogFooter className="flex gap-5 mt-4">

@@ -18,8 +18,10 @@ import { toast } from "react-toastify"
 import { useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate, useParams } from "react-router"
 import useGeneralStore from "@/lib/store/generalStore"
+import { useState } from "react"
 
 export function AddChildResultFolder() {
+    const [open, setOpen] = useState(false)
     const { id } = useParams();
     const queryClient = useQueryClient()
     const navigate = useNavigate();
@@ -41,6 +43,7 @@ export function AddChildResultFolder() {
             await addNewFolder({ name: name as string, parentId: id });
             queryClient.invalidateQueries({ queryKey: ['parentsFolders'] });
             toast.success("تم إضافة الفولدر بنجاح");
+            setOpen(false);
             refreshPage()
         } catch (error) {
             toast.error("حدث خطأ أثناء إضافة الفولدر");
@@ -49,8 +52,11 @@ export function AddChildResultFolder() {
             useGeneralStore.getState().setIsLoading(false);
         }
     }
+
+
+
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen} >
             <DialogTrigger asChild>
                 <Button ><Icons.add /> اضافة فولدر جديد</Button>
             </DialogTrigger>
@@ -64,7 +70,7 @@ export function AddChildResultFolder() {
                     <div className="grid gap-4">
                         <div className="grid gap-3">
                             <Label htmlFor="name"> عنوان </Label>
-                            <Input id="name" name="name" placeholder="اضف العنوان هنا .." />
+                            <Input className="" id="name" name="name" placeholder="اضف العنوان هنا .." />
                         </div>
                     </div>
                     <DialogFooter className="flex gap-5 mt-4">

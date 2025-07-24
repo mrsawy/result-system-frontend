@@ -14,6 +14,8 @@ import Swal from "sweetalert2";
 
 const Folder: React.FC = () => {
 
+    const [open, setOpen] = useState(false)
+
     const folder = useLoaderData() as File;
     const { user } = useAuthStore()
     const navigate = useNavigate();
@@ -125,22 +127,26 @@ const Folder: React.FC = () => {
                 className='my-5' placeholder='ابحث من هنا' />
             {children && children.length > 0 ? <>
                 <div className='flex flex-col gap-3'>
-                    {children.map((folder) => (<NavLink to={folder.type == "folder" ? `/results/${folder.id}` : `#`} className='flex justify-between gap-3 py-4 px-2 border rounded bg-neutral-300 dark:bg-neutral-800 text-center text-xl transition-all hover:scale-105 '
-                    >
-                        <div className='flex gap-4 cursor-pointer truncate' onClick={() => handleClick({ id: folder.id, type: folder.type })}>
-                            {folder.type == "folder" && <Icons.folder />}
-                            {folder.type == "file" && <Icons.file />}
+                    {children.map((folder) => (
+                        <div
+                            className='flex justify-between gap-3 py-4 px-2 border rounded bg-neutral-300 dark:bg-neutral-800 text-center text-xl transition-all hover:opacity-80 '
+                        >
+                            <NavLink to={folder.type == "folder" ? `/results/${folder.id}` : `#`} className='flex gap-4 cursor-pointer truncate ' onClick={() => handleClick({ id: folder.id, type: folder.type })}>
+                                {folder.type == "folder" && <Icons.folder />}
+                                {folder.type == "file" && <Icons.file />}
 
-                            {folder.name}
+                                <div className='hover:underline underline-offset-8 h-9'> {folder.name} </div>
+                            </NavLink>
+
+                            {user && <Icons.delete onClick={() => deleteHandler(folder.id, folder.type)} />}
                         </div>
-                        {user && <Icons.delete onClick={() => deleteHandler(folder.id, folder.type)} />}
-                    </NavLink>))}
+                    ))}
                 </div>
             </> : <div>
                 <h1 >لم يتم العثور على أي ملفات</h1>
             </div>
             }
-        </div>
+        </div >
     );
 };
 

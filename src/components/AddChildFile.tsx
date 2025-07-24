@@ -26,6 +26,7 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 
 export function AddChildFile() {
+    const [open, setOpen] = useState(false)
     const { id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
@@ -62,11 +63,13 @@ export function AddChildFile() {
             // await addNewFolder({ name: name as string, parentId: id });
             // queryClient.invalidateQueries({ queryKey: ['parentsFolders'] });
             toast.success("تم إضافة الملف بنجاح");
+            setOpen(false);
+
             refreshPage()
         } catch (error) {
             toast.error("حدث خطأ أثناء إضافة الملف");
             console.error("Login failed:", error);
-        }finally{
+        } finally {
             useGeneralStore.getState().setIsLoading(false);
         }
 
@@ -77,7 +80,7 @@ export function AddChildFile() {
 
 
     return (
-        <Dialog >
+        <Dialog open={open} onOpenChange={setOpen} >
             <DialogTrigger asChild>
                 <Button ><Icons.add /> اضافة ملف جديد</Button>
             </DialogTrigger>
